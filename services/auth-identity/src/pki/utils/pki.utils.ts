@@ -168,7 +168,7 @@ export class PkiUtils {
       },
       fingerprintSha256,
       serialNumberHex: cert.serialNumber,
-      signatureAlgorithm: forge.pki.oids[cert.sigoid] || cert.sigoid,
+      signatureAlgorithm: forge.pki.oids[(cert as any).sigoid || (cert as any).signatureOid] || (cert as any).sigoid || (cert as any).signatureOid || 'rsaEncryption',
       keyUsage,
       extKeyUsage,
       isSelfSigned,
